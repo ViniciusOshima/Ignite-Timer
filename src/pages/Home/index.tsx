@@ -2,7 +2,11 @@ import {
   HomeContainer,
   FormContainer,
   CountDownContainer,
-  Separator
+  Separator,
+  StartCountDouwnButton,
+  TaskInput,
+  // eslint-disable-next-line prettier/prettier
+  MinutesAmountInput
 } from './styles'
 
 import { Play } from 'phosphor-react'
@@ -13,10 +17,27 @@ export function Home() {
       <form action="">
         <FormContainer>
           <label htmlFor="task">Vou trabalhar em</label>
-          <input id="number" />
+          <TaskInput
+            id="task"
+            list="task-suggestions"
+            placeholder="Dê um nome para seu projeto"
+          />
+
+          <datalist id="task-suggestions">
+            <option value="projeto uim" />
+            <option value="haahaha" />
+            <option value="simsalabim" />
+          </datalist>
 
           <label htmlFor="minutesAmount">durante</label>
-          <input type="number" id="minutesAmount" />
+          <MinutesAmountInput
+            type="number"
+            id="minutesAmount"
+            placeholder="00"
+            step={5}
+            min={5}
+            max={60}
+          />
 
           <span>minutos.</span>
         </FormContainer>
@@ -29,10 +50,10 @@ export function Home() {
           <span>0</span>
         </CountDownContainer>
 
-        <button type="submit">
+        <StartCountDouwnButton disabled type="submit">
           <Play size={24} />
           Começar
-        </button>
+        </StartCountDouwnButton>
       </form>
     </HomeContainer>
   )
