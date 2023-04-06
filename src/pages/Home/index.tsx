@@ -11,12 +11,31 @@ import {
 
 import { Play } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod'
+
+const newCycleFormValidationSchema = zod.object({
+  task: zod.string().min(1, 'Informe a tarefa'),
+  // eslint-disable-next-line prettier/prettier
+  minutesAmount: zod.number().min(5).max(60)
+})
+
+type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
 
 export function Home() {
-  const { register, handleSubmit, watch } = useForm()
+  const { register, handleSubmit, watch, reset } = useForm<NewCycleFormData>({
+    resolver: zodResolver(newCycleFormValidationSchema),
+    defaultValues: {
+      task: '',
+      // eslint-disable-next-line prettier/prettier
+      minutesAmount: 0
+      // eslint-disable-next-line prettier/prettier
+    }
+  })
 
-  function handleCreateNewCycle(data) {
+  function handleCreateNewCycle(data: any) {
     console.log(data)
+    reset()
   }
 
   const task = watch('task')
