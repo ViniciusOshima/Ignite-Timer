@@ -1,7 +1,7 @@
 import {
   HomeContainer,
   StartCountDownButton,
-  StopCountDownButton
+  StopCountDownButton,
 } from './styles'
 
 import { HandPalm, Play } from 'phosphor-react'
@@ -15,7 +15,7 @@ import { CyclesContext } from '../../contexts/CyclesContext'
 
 const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, 'Informe a tarefa'),
-  minutesAmount: zod.number().min(1).max(60)
+  minutesAmount: zod.number().min(1).max(60),
 })
 
 type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
@@ -28,8 +28,8 @@ export function Home() {
     resolver: zodResolver(newCycleFormValidationSchema),
     defaultValues: {
       task: '',
-      minutesAmount: 0
-    }
+      minutesAmount: 0,
+    },
   })
 
   const { handleSubmit, watch, reset } = newCycleForm

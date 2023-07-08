@@ -23,15 +23,15 @@ export function History() {
           </thead>
 
           <tbody>
-            {cycles.map(cycle => {
+            {cycles.map((cycle) => {
               return (
                 <tr key={cycle.id}>
                   <td>{cycle.task}</td>
-                  <td>{cycle.minutesAmount}</td>
+                  <td>{cycle.minutesAmount} min</td>
                   <td>
-                    {formatDistanceToNow(cycle.startDate, {
+                    {formatDistanceToNow(new Date(cycle.startDate), {
                       addSuffix: true,
-                      locale: ptBR
+                      locale: ptBR,
                     })}
                   </td>
                   <td>
