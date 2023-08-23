@@ -7,7 +7,7 @@ export function Router() {
   return (
     <Routes>
       <Route path="/" element={<DefaultLayout />}>
-        <Route path="/Ignite-Timer" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/history" element={<History />} />
       </Route>
     </Routes>
